@@ -1,4 +1,4 @@
-package com.data.concurrent.demo;
+package com.data.concurrent.c_keyword;
 
 /*
  * @Author: tianyong
@@ -8,27 +8,28 @@ package com.data.concurrent.demo;
 public class Synchronized {
 
     private double balance;
-    private boolean flag=false;//已有存款标志
+    private boolean flag=false;  //已有存款标志
     public Synchronized(double balance) {
         this.balance = balance;
     }
 
+
     // 取钱
     public synchronized void draw(double count){
         try{
-            if(!flag){//为假，所以没有人存钱进去，取钱阻塞
+            if(!flag){  //为假，所以没有人存钱进去，取钱阻塞
                 wait();
-            }else{//可以取钱
+            }else{  //可以取钱
                 if(balance>=count){
                     System.out.print(Thread.currentThread().getName()+"取钱:"+count);
                     balance-=count;
                     System.out.println(" 取钱成功,账户余额:"+balance);
                     flag=false;
-                    notifyAll();//唤醒存钱线程
+                    notifyAll();  //唤醒存钱线程
                 }else{//余额不足
                     System.out.println("想取"+count+"账户余额不足:"+balance);
                     flag=false;
-                    notifyAll();//唤醒存钱线程
+                    notifyAll();  //唤醒存钱线程
                 }
             }
         }catch(InterruptedException ex){
@@ -36,16 +37,16 @@ public class Synchronized {
         }
     }
     // 存钱
-    public synchronized void deposit(double depositAmount){
+    public synchronized void deposit(double count){
         try{
             if(flag){
-                wait();//没人取钱，则存钱阻塞
+                wait();  //没人取钱，则存钱阻塞
             }else{
-                System.out.print(Thread.currentThread().getName()+"存钱:"+depositAmount);
-                balance+=depositAmount;
+                System.out.print(Thread.currentThread().getName()+"存钱:"+count);
+                balance+=count;
                 System.out.println(" 存钱成功,账户余额:"+balance);
                 flag=true;
-                notifyAll();//唤醒取钱线程
+                notifyAll();  //唤醒取钱线程
             }
         }catch(InterruptedException ex){
             ex.printStackTrace();
@@ -55,7 +56,7 @@ public class Synchronized {
     // 取钱 (消费者)
     public static class DrawThread extends Thread{
         private Synchronized sync;
-        private double count;//取钱数
+        private double count;  //取钱数
         public DrawThread(String name,Synchronized sync,double count){
             super(name);
             this.sync=sync;
@@ -72,7 +73,7 @@ public class Synchronized {
     // 存钱 (生产者)
     public static class DepositThread extends Thread{
         private Synchronized sync;
-        private double depositAmount;//取钱数
+        private double depositAmount;  //取钱数
         public DepositThread(String name,Synchronized sync,double depositAmount){
             super(name);
             this.sync=sync;

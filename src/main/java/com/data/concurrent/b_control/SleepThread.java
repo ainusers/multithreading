@@ -1,7 +1,4 @@
-package com.data.concurrent.control;
-
-import com.data.concurrent.begin.ExtThread;
-import com.data.concurrent.begin.ImplRunnable;
+package com.data.concurrent.b_control;
 
 /*
  * @Author: tianyong
@@ -21,7 +18,7 @@ public class SleepThread implements Runnable{
         for(int i=0;i<50;i++){
             System.out.println(Thread.currentThread().getName()+" "+i);
             if(i==20){
-                ImplRunnable sr=new ImplRunnable();
+                SleepThread sr=new SleepThread();
                 new Thread(sr,"thread-1").start();
                 Thread.sleep(1);
             }

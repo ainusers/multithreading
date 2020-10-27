@@ -1,4 +1,4 @@
-package com.data.concurrent.demo;
+package com.data.concurrent.c_keyword;
 
 import java.util.concurrent.locks.ReentrantLock;
 

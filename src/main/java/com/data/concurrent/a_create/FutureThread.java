@@ -1,4 +1,4 @@
-package com.data.concurrent.begin;
+package com.data.concurrent.a_create;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -10,6 +10,7 @@ import java.util.concurrent.FutureTask;
  * @Description: 第三种方式 (Lambda表达式创建Callable对象)
  */
 public class FutureThread {
+
 
     public static void main(String[] args) {
         FutureTask<Integer>task=new FutureTask<Integer>(new Callable<Integer>() {
