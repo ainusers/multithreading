@@ -8,6 +8,8 @@ import java.util.concurrent.FutureTask;
  * @Author: tianyong
  * @Date: 2020/10/23 15:02
  * @Description: 第三种方式 (Lambda表达式创建Callable对象)
+ * @Description: FutureTask继承于Runnable
+ * @Description: 区别于Runnable，有返回值，可抛出异常
  */
 public class FutureThread {
 
